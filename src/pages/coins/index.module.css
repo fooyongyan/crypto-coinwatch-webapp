@@ -1,0 +1,9 @@
+.__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.__body {
+    text-align: center;
+}
