@@ -20,26 +20,11 @@ import styles from './index.module.css'
     </table>
 }*/
 const Home = ( {coins}) => {
-    ///console.log(coins)
-    const [filteredCoins, setCoins ] = useState(coins);
-    const filter = (value) => {
-        return coins.filter ( c => {
-            //console.log(c);
-            return  c.id.includes(value) || 
-                    c.name.includes(value) || 
-                    c.symbol.includes(value);
-        })
-    };
-    const onSearch = ( e ) => {
-        const res = filter( e.target.value.toLowerCase())
-        setCoins(res);
 
-    };
     return ( 
         <Layout> 
             <div className = {styles.__body}>
-                <SearchInput onChange = {onSearch}> </SearchInput>
-                <DataTable data = {filteredCoins}> </DataTable> 
+                <DataTable data = {coins}> </DataTable> 
             </div>
         </Layout>
     )
