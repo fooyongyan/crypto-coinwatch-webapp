@@ -10,7 +10,7 @@ const Layout = ({title, children}) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div class = {styles.__layout_header}> 
-                [Header]
+                <h1> My Platform Watcher</h1>
             </div>
             <div class = { styles.__layout_body}> 
                 {children}            

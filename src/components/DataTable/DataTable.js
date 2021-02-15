@@ -15,39 +15,39 @@ const DataTable = ( props ) => {
     const [page, setPage] = useState(1)
     const [filteredSet, setFiltered] = useState(data);
     
-    const filterRecord = ( e, query) => {
-        for ( var i = 0; i < keys.length; i++ ) {
-            const currentKey = keys[i];
-            if ( e[currentKey].includes(query))
-                return true;
-        }
-        return false;
-    }
+    /**
+     * Filter the entire Object based to see if it includes the searched results
+     * @param {string} query 
+     */
+    const filter = (query) => data.filter ( e => JSON.stringify(e).includes(query))
 
-    const filter = (query) => {
-        console.log(query);
-        return data.filter ( e => filterRecord ( e, query));
-    }
+    /**
+     * Slice the Content based on the given Sets
+     */
     const slice = () => {
         const start = (page - 1) * items
         const end = (page ) * items
         return filteredSet.slice ( start, end);
     }
 
+    /**
+     * Previous Page
+     */
     const onPrev = () => {
         console.log(page);
         const newPage = page - 1;
         setPage( newPage < 1 ? 1 : newPage);
     }
 
+    /**
+     * Current Page
+     */
     const onNext = () => {
-        console.log(page);
         const newPage = page + 1;
         setPage( newPage < 1 ? 1 : newPage);
     }
 
     const onSearch = ( ev ) => {
-        console.log('::onSearch')
         setPage(1);
         const res = filter(ev.target.value);
         setFiltered(res);
@@ -58,16 +58,8 @@ const DataTable = ( props ) => {
         <div className = {styles.__dataTable}> 
             <SearchInput onChange = {onSearch} />
             <table> 
-                <tr class = {styles.__dataTable_header}>
-                    {keys.map( key => {
-                        return <th> {key} </th>
-                    })}
-                </tr>
-                {
-                    slice().map ( d => {
-                        return <DataRow key={d.id} data={d} keys={keys}/>
-                    })
-                }
+                <tr class = {styles.__dataTable_header}> {keys.map( key =>  <th> {key} </th>)} </tr>
+                { slice().map ( d => <DataRow key={d.id} data={d} keys={keys}/>) }
             </table>
             <div className = {styles.__dataTable_control}> 
                 <button onClick = {onPrev}> Prev</button>
