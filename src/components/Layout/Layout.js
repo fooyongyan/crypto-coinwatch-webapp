@@ -9,10 +9,10 @@ const Layout = ({title, children}) => {
                 <title> {title} </title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div class = {styles.__layout_header}> 
+            <div className = {styles.__layout_header}> 
                 <h1> My Platform Watcher</h1>
             </div>
-            <div class = { styles.__layout_body}> 
+            <div className = { styles.__layout_body}> 
                 {children}            
             </div>
             <footer className={styles.__layout_footer}>

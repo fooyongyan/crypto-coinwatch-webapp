@@ -25,6 +25,9 @@ const DataTable = ( props ) => {
      * Slice the Content based on the given Sets
      */
     const slice = () => {
+        const length = filteredSet.length;
+        const pages = Math.floor(length / items) + 1;
+        console.log( pages );
         const start = (page - 1) * items
         const end = (page ) * items
         return filteredSet.slice ( start, end);
@@ -47,18 +50,22 @@ const DataTable = ( props ) => {
         setPage( newPage < 1 ? 1 : newPage);
     }
 
+    /**
+     * Invoked when the Subject is detected
+     * @param {*} ev 
+     */
     const onSearch = ( ev ) => {
+        /** @type {string} */
+        const query = ev.target.value;
         setPage(1);
-        const res = filter(ev.target.value);
-        setFiltered(res);
-
+        setFiltered(filter( query.toLowerCase()));
     }
 
     return (
         <div className = {styles.__dataTable}> 
             <SearchInput onChange = {onSearch} />
             <table> 
-                <tr class = {styles.__dataTable_header}> {keys.map( key =>  <th> {key} </th>)} </tr>
+                <tr className = {styles.__dataTable_header}> {keys.map( key =>  <th> {key} </th>)} </tr>
                 { slice().map ( d => <DataRow key={d.id} data={d} keys={keys}/>) }
             </table>
             <div className = {styles.__dataTable_control}> 
