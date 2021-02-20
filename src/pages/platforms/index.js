@@ -1,9 +1,8 @@
-import Layout from '../../../components/Layout/Layout' 
-import { Grid, Card, Icon, Image, Container } from 'semantic-ui-react'
+import { Grid, Card, Icon, Image } from 'semantic-ui-react'
 import data from './__data'
 import styles from './index.module.css'
 import PlatformInfoModal from './__modal';
-
+import Layout from '../../components/Layout/Layout'
 const PlatformCard = ( {data}) => {
 
   const text = data.description.substring(0, 75) + "...";

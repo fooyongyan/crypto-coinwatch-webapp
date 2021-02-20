@@ -25,11 +25,11 @@ const PageHeader = () => {
     return (
         <Menu fixed='top' inverted>
         <Container>
-            <Menu.Item as='a' header>
+            <Menu.Item as='a' href = '/' header>
             <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
             </Menu.Item>
-            <Menu.Item as='a' href = '/v2/coins'> Coins </Menu.Item>
-            <Menu.Item as='a' href = '/v2/platforms'> Platforms </Menu.Item>
+            <Menu.Item as='a' href = '/coins'> Coins </Menu.Item>
+            <Menu.Item as='a' href = '/platforms'> Platforms </Menu.Item>
         </Container>
         </Menu>
     )
