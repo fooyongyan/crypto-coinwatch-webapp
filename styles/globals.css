@@ -1,3 +1,7 @@
+:root {
+  --layout-border: darkgray dotted 1px
+}
+
 html,
 body {
   padding: 0;
