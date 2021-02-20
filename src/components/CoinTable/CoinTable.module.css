@@ -1,0 +1,31 @@
+.__coinTable {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    padding: 10px;
+}
+
+.__CoinTable_searchControl {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    align-content: space-between;
+}
+.__CoinTable_searchControl span{
+    width: 70%;
+}
+
+
+.__coinTable_controls {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 10px;
+}
+
+.__coinTable_header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}

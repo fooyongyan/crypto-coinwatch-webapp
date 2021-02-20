@@ -1,6 +1,6 @@
 import { Header, Container } from 'semantic-ui-react'
-import Layout from '../components/Layout/Layout'
-import CoinTable from '../components/CoinTable/CoinTable'
+import Layout from '../../../components/Layout/Layout'
+import CoinTable from '../../../components/CoinTable/CoinTable'
 
 export default function Home( {coins}) {
   return (

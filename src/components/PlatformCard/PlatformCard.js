@@ -8,7 +8,7 @@ import PlatformHeader from './__PlatformHeader'
  * 
  * @param {Props} param0 
  */
-const PlatformCardProps = ( {data}) => {
+const PlatformCard = ( {data}) => {
 
     return (
     <div className = {styles.__PlatformCard}> 
