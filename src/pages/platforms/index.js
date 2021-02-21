@@ -1,24 +1,41 @@
-import { Grid, Card, Icon, Image } from 'semantic-ui-react'
-import data from './__data'
+import { Grid, Card, Icon, Image, Label, Popup} from 'semantic-ui-react'
 import styles from './index.module.css'
 import PlatformInfoModal from './__modal';
 import Layout from '../../components/Layout/Layout'
+import SampleData from './__data';
+
+const PlatformStat = ( {icon, text, tooltip, color}) => {
+  return ( 
+    <Popup 
+      content={tooltip} 
+      trigger={<Label color={color}> <Icon name={icon} /> {text}  </Label>}
+    />
+  )
+}
 const PlatformCard = ( {data}) => {
 
   const text = data.description.substring(0, 75) + "...";
-
+  const assets = data.assets;
+  const value = `$${data.value.value.toFixed(2)}`;
+  const exposure = `$${data.exposure.value.toFixed(2)}`;
+  console.log(data);
   return (
-    <Card className= {styles.__card}>
-    <Image src={data.imgUrl} wrapped ui={false} />
-    <Card.Content>
-      <Card.Header>{data.title}</Card.Header>
-      <Card.Meta>
-        <span className='date'>Started in {data.yearStarted}</span>
-      </Card.Meta>
-      <Card.Description>
-        {text}
-      </Card.Description>
-    </Card.Content>
+    <Card className= {styles.__card} >
+      <Image src={data.imgUrl} wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{data.name}</Card.Header>
+        <Card.Meta>
+          <span className='date'>Started in {data.yearStarted}</span>
+        </Card.Meta>
+        <Card.Description>
+          {text}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <PlatformStat tooltip = 'No. of Assets' text = {assets.length} icon = 'monero' color = 'blue'/>
+        <PlatformStat tooltip = 'Value' text = {value} icon = 'money' color = 'green'/>
+        <PlatformStat tooltip = 'Exposure' text = {exposure} icon = 'money' color = 'red'/>
+      </Card.Content>
     <Card.Content extra textAlign = "right">
       <a href = {data.link} target = "_blank">
         <Icon name='linkify' />
@@ -38,10 +55,11 @@ const RowOfCards = ( {row, cols} ) => {
 }
 
 
-export default function Home() {
-
+export default function Home({platforms}) {
+  console.log(platforms[0])
+  const data = platforms;
   const configuration = {
-    columns: 4
+    columns: 3
   }
 
   const map = () => {
@@ -51,7 +69,6 @@ export default function Home() {
       const start = i * configuration.columns;
       const end = start + configuration.columns;
       const rowData = data.slice( start, end)
-      console.log( start, end, data.length, rowData);
       rows.push(rowData);
     }
     return rows;
@@ -78,10 +95,20 @@ export default function Home() {
             </div>
           </Grid.Column>
           </Grid.Row>
-          {rows.map( row => {
-            return <RowOfCards row = {row} cols = {configuration.columns} />
-          })}
+          {rows.map( row => <RowOfCards row = {row} cols = {configuration.columns} /> )}
         </Grid>
     </Layout>
   )
+}
+
+
+export const getStaticProps = async () => {
+  console.log('/platforms');
+  const response = await fetch ('http://localhost:3001/api/platforms');
+  const platforms = await response.json();
+  return {
+      props: {
+          platforms
+      }
+  }
 }
