@@ -9,7 +9,7 @@ function AboutMe ( ) {
   return (
     <div> 
       <Image src='/profile.png' size='medium' circular centered/>
-    <Segment >
+      <Segment >
       <Header as='h3' floated='right'>
         About me
       </Header>
@@ -44,7 +44,7 @@ function AboutMe ( ) {
       </Header>
       <Divider clearing />
       <div className = {styles.__tags}>
-        {skills.map ( skill =>  <Label as='a' image> {skill} </Label>)}
+        {skills.map ( skill =>  <Label key = {skill} as='a' image> {skill} </Label>)}
       </div>
     </Segment>
     <Segment >
@@ -53,7 +53,7 @@ function AboutMe ( ) {
       </Header>
       <Divider clearing />
       <div className = {styles.__tags}>
-        {tools.map ( tool =>  <Label as='a' image> {tool} </Label>)}
+        {tools.map ( tool =>  <Label  key = {tool} as='a' image> {tool} </Label>)}
       </div>
     </Segment>
   </div>
@@ -70,7 +70,7 @@ function Position ( {position} ) {
       <Header as='h5'> {position.position} </Header> 
       <p> {position.period} </p>
       <List as='ul'>
-        {position.points.map ( pt => <List.Item as='li'> {pt}</List.Item>)}
+        {position.points.map ( pt => <List.Item key = {pt} as='li'> {pt}</List.Item>)}
       </List>
     </Segment>
   )
@@ -119,7 +119,7 @@ function WorkExperience () {
   return (
     <div>
       <div>
-        { positions.map ( position => <Position position = {position} />)}
+        { positions.map ( position => <Position key = {position.company} position = {position} />)}
       </div> 
     </div> 
   )
