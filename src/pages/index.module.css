@@ -1,0 +1,10 @@
+.__tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.__tags a {
+    margin: 10px;
+    margin-top: 10px;
+}
